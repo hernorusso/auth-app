@@ -3,10 +3,10 @@
 import { useFormState } from "react-dom";
 import Link from "next/link";
 
-import { signUp } from "./action";
+import { auth } from "./action";
 
 const AuthForm = ({ mode }) => {
-  const [state, formAction] = useFormState(signUp, {});
+  const [state, formAction] = useFormState(auth.bind(null, mode), {});
 
   return (
     <form id="auth-form" action={formAction}>

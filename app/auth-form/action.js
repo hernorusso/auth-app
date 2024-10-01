@@ -2,7 +2,7 @@
 import { redirect } from "next/navigation";
 
 import { createUser, getUserByEmail } from "@/lib/user";
-import { hashUserPassword } from "@/lib/hash";
+import { hashUserPassword, verifyPassword } from "@/lib/hash";
 import { createAuthSession } from "@/lib/auth";
 
 const signUp = async (prevState, formData) => {
@@ -68,4 +68,12 @@ const login = async (prevState, formData) => {
   redirect("/training");
 };
 
-export { signUp };
+const auth = async (mode, prevState, formData) => {
+  if (mode === "login") {
+    return login(prevState, formData);
+  }
+
+  return signUp(prevState, formData);
+};
+
+export { auth };
